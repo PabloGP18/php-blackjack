@@ -6,6 +6,10 @@ bin-release/
 
 # Other files and folders
 .settings/
+node_modules/
+.idea/
+package-lock.json/
+.gitignore
 
 # Executables
 *.swf
