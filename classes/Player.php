@@ -8,15 +8,17 @@ class Player {
     //private int $blackjack = 21;
     public function __construct(Deck $deck)
     {
-        $this->cards[] = $deck->drawCard();
-        $this->cards[] = $deck->drawCard();
+
+        for ($i=0; $i < 2; $i++){
+            $this->cards[$i] = $deck->drawCard();
+        }
     }
 
     public function hit(Deck $deck): void
     {
         $this->cards[] = $deck->drawCard();
 
-        if($this->getScore() > 21){
+        if($this->getScore($this->cards) > 21){
             $this->lost= true;
         }
     }
@@ -49,7 +51,7 @@ class Dealer extends Player{
 
     public function hit(Deck $deck): void
     {
-        if($this->getScore()<15){
+        if($this->getScore()<=15){
             parent::hit($deck);
         }
     }

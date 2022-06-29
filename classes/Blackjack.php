@@ -12,11 +12,10 @@ class Blackjack {
     {
 
         $this->deck = new Deck();
-
+        $this->deck -> shuffle();
         $this->player = new Player($this->deck);
         $this->dealer = new Dealer($this->deck);
 
-        $this->deck -> shuffle();
     }
 
     /**
@@ -42,6 +41,5 @@ class Blackjack {
     {
         return $this->deck;
     }
-
 
 }
