@@ -1,6 +1,6 @@
 <?php
 
-require './Player.php';
+
 
 class Blackjack {
 
@@ -10,10 +10,11 @@ class Blackjack {
 
     public function __construct()
     {
-        $this->player = new Player($this->deck);
-        $this->dealer = new Player($this->deck);
 
         $this->deck = new Deck();
+
+        $this->player = new Player($this->deck);
+        $this->dealer = new Dealer($this->deck);
 
         $this->deck -> shuffle();
     }

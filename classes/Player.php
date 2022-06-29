@@ -5,26 +5,26 @@ class Player {
 
     private array $cards;
     private bool $lost = false;
-    private int $blackjack = 21;
+    //private int $blackjack = 21;
     public function __construct(Deck $deck)
     {
         $this->cards[] = $deck->drawCard();
         $this->cards[] = $deck->drawCard();
     }
 
-    private function hit(Deck $deck): void
+    public function hit(Deck $deck): void
     {
         $this->cards[] = $deck->drawCard();
 
-        if($this->getScore() > $this->blackjack){
+        if($this->getScore() > 21){
             $this->lost= true;
         }
     }
-    private function surrender(): bool
+    public function surrender(): bool
     {
         return $this->lost = true;
     }
-    private function getScore(): int
+    public function getScore(): int
     {
         $score=0;
         foreach ($this->cards as $card){
@@ -32,8 +32,25 @@ class Player {
         }
         return $score;
     }
-    private function hasLost(): bool
+    public function hasLost(): bool
     {
        return $this->lost;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCards(): array
+    {
+        return $this->cards;
+    }
+}
+class Dealer extends Player{
+
+    public function hit(Deck $deck): void
+    {
+        if($this->getScore()<15){
+            parent::hit($deck);
+        }
     }
 }
